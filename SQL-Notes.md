@@ -113,6 +113,7 @@ At this point the syntax is should become pretty self-explanatory however, the `
 ***
 #### What does this code do?
 ```sql
+
 -- Add a single band/value to a table at a time
 INSERT INTO bands (name)
 VALUES ('Iron Maiden');
@@ -137,4 +138,43 @@ FROM bands;
 -- Use `AS` to alias column names
 SELECT id AS 'ID', name AS 'Band Name' 
 FROM bands;
+
+-- Query to put bands in (default) ascending order
+SELECT *
+FROM bands
+ORDER BY name;
+
+-- Query to put bands in descending order
+SELECT *
+FROM bands
+ORDER BY name DESC;
+
+-- Add some albums into table
+INSERT INTO albums (name, release_year, band_id)
+VALUES ('Some nonsense', 1985, 1),
+	   ('Somemore nonsense', 1984, 1),
+       ('Even more nonsense', 2018, 2),
+       ('Even more nonsense', 2010, 3),
+       ('Test Album', NULL, 3);
+       
+-- Query the newly added albums
+SELECT *
+FROM albums;
+
+-- Query only the name column to demonstrate a problem of redundancy as an intro
+-- to a keyword command to remove redudancies
+SELECT name
+FROM albums;
+
+-- What do I do if I just want `unique` names and not `all` the names?
+-- You can use the `DISTINCT` keyword command!
+SELECT DISTINCT name
+FROM albums;
+
+-- What does `DISTINCT` do?
+-- `DISTINCT` takes all the data that is returned and compares them, identifying if 
+-- any of the data is the same and if so, it removes the redundancies leaving only
+-- only the `unique` names; it leaves only one `unique` column instead of duplicates. 
+
+
 ```
