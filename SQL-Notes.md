@@ -225,4 +225,25 @@ WHERE release_year
 BETWEEN 2000 AND 2018;
 -- `BETWEEN` (minimum value) AND (maximum value), are the parameters needed 
 -- for proper query execution
+
+
+-- Filter for things that are `NULL`
+SELECT *
+FROM albums
+WHERE release_year IS NULL;
+
+
+-- What do you do if the `Test Album`, that is a row that was added is a mistake?
+-- Use the `DELETE` command
+-- DELETE FROM albums
+-- Running these commands right now will delete everything - that's not what I want lol.
+
+
+-- The full commands statement is this...
+DELETE FROM albums WHERE id = 5;
+
+
+-- Now query the table again to see if the row data `Test Album` has been deleted
+SELECT * 
+FROM albums;
 ```
