@@ -113,41 +113,48 @@ At this point the syntax is should become pretty self-explanatory however, the `
 ***
 #### What does this code do?
 ```sql
-
 -- Add a single band/value to a table at a time
 INSERT INTO bands (name)
 VALUES ('Iron Maiden');
+
 
 -- Alternative way to add multiple bands/values to a table at once
 INSERT INTO bands (name)
 VALUES ('Deuce'), ('Avenged Sevenfold'), ('Ankor');
 
+
 -- Query all of the newly added bands
 SELECT *
 FROM bands;
+
 
 -- Query the bands table limited to just two rows
 SELECT *
 FROM bands
 LIMIT 2;
 
+
 -- Query only the name column
 SELECT name
 FROM bands;
 
+
 -- Use `AS` to alias column names
 SELECT id AS 'ID', name AS 'Band Name' 
 FROM bands;
+
 
 -- Query to put bands in (default) ascending order
 SELECT *
 FROM bands
 ORDER BY name;
 
+
 -- Query to put bands in descending order
 SELECT *
 FROM bands
 ORDER BY name DESC;
+
 
 -- Add some albums into table
 INSERT INTO albums (name, release_year, band_id)
@@ -157,24 +164,65 @@ VALUES ('Some nonsense', 1985, 1),
        ('Even more nonsense', 2010, 3),
        ('Test Album', NULL, 3);
        
+       
 -- Query the newly added albums
 SELECT *
 FROM albums;
+
 
 -- Query only the name column to demonstrate a problem of redundancy as an intro
 -- to a keyword command to remove redudancies
 SELECT name
 FROM albums;
 
+
 -- What do I do if I just want `unique` names and not `all` the names?
 -- You can use the `DISTINCT` keyword command!
 SELECT DISTINCT name
 FROM albums;
-
 -- What does `DISTINCT` do?
 -- `DISTINCT` takes all the data that is returned and compares them, identifying if 
 -- any of the data is the same and if so, it removes the redundancies leaving only
 -- only the `unique` names; it leaves only one `unique` column instead of duplicates. 
 
 
+-- What do you do if some of the data in the table needs to be edited because it's incorrect?
+UPDATE albums
+SET release_year = 1982;
+-- If I just ran the above commands it would update all the `release_year` columns to contain
+-- `1982` and that's not what I want.
+
+
+-- Use the `WHERE`statement to filter down to the specific row to be edited. 
+UPDATE albums
+SET release_year = 1982
+WHERE id = 1;
+
+
+-- Query albums released before the year 2000
+SELECT *
+FROM albums
+WHERE release_year < 2000;
+
+
+-- What is the wildcard query?
+-- It enables saying that you're looking for any number of characters wherever it's placed
+SELECT *
+FROM albums
+WHERE name LIKE '%en%' OR band_id = 2;
+-- The `OR` statement checks for either clause and shows the results
+
+-- Makes a query that has to meet two criterion at once instead of either/or
+SELECT *
+FROM albums
+WHERE release_year = 1984 AND band_id = 1;
+
+-- The `Where` statement can be used to filter between two different albums
+-- by using the `BETWEEN` statement
+SELECT *
+FROM albums
+WHERE release_year 
+BETWEEN 2000 AND 2018;
+-- `BETWEEN` (minimum value) AND (maximum value), are the parameters needed 
+-- for proper query execution
 ```
