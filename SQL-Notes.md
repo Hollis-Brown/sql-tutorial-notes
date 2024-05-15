@@ -83,3 +83,58 @@ CREATE TABLE bands (
   PRIMARY KEY (id)
 );
 ```   
+#### Review
+- The inside of the parentheses is for defining the different columns
+  - `id` provides a unique identification number.
+  - `INT` specifies that the id's characters will be a number.
+  - `NOT NULL` specifies that the id number can never be empty.
+  - `AUTO_INCREMENT` specifies that each newly added (album) item will automatically be incremented. 
+***
+
+#### What are the commands to tell SQL that you want to create an albums table and columns therein? 
+```sql
+CREATE DATABASE record_company;
+USE record_company;
+CREATE TABLE bands (
+  id INT NOT NULL AUTO_INCREMENT,
+  name VARCHAR(255) NOT NULL
+  PRIMARY KEY (id)
+);
+CREATE TABLE albums (
+  id INT NOT NULL AUTO_INCREMENT,
+  name VARCHAR(255) NOT NULL,
+  release_year INT,
+  band_id INT NOT NULL,
+  PRIMARY KEY (id)
+);
+```  
+
+At this point the syntax is should become pretty self-explanatory however, the `release_year INT`clause of the code is important to unpack. It does not include the keyword `NOT` and/or `NULL` because I don't know when the album will be released. I need to be able to connect an album to a band and I can't just put a band column inside of album column. I need to be able to reference the `bands` table from inside of the `album` table. That's why the id inside of the `bands` table comes in handy because I can save it inside of the `albums` table as a reference to the `bands` table from within the `albums` table. There I'll add a `band_id` column. 
+***
+#### What does this code do?
+```sql
+-- Add a single band/value to a table at a time
+INSERT INTO bands (name)
+VALUES ('Iron Maiden');
+
+-- Alternative way to add multiple bands/values to a table at once
+INSERT INTO bands (name)
+VALUES ('Deuce'), ('Avenged Sevenfold'), ('Ankor');
+
+-- Query all of the newly added bands
+SELECT *
+FROM bands;
+
+-- Query the bands table limited to just two rows
+SELECT *
+FROM bands
+LIMIT 2;
+
+-- Query only the name column
+SELECT name
+FROM bands;
+
+-- Use `AS` to alias column names
+SELECT id AS 'ID', name AS 'Band Name' 
+FROM bands;
+```
