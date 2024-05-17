@@ -54,4 +54,4 @@ server.listen(1234, function() {
 
 7. **Start Server Listening**: Finally, the server is instructed to listen on port 1234 using the `listen` method. When the server starts listening, a message is logged to the console indicating that it's running.
 
-In summary, this code sets up a basic Node.js server that responds to incoming requests with a JSON object containing sample data. It demonstrates the fundamental steps involved in creating a simple server-side application using Node.js.
+#### In summary, this code sets up a basic Node.js server that responds to incoming requests with a JSON object containing sample data. It demonstrates the fundamental steps involved in creating a simple server-side application using Node.js.
