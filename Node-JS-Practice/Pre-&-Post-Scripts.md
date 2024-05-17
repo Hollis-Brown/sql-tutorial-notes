@@ -54,7 +54,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "hollis": "echo \"Hello Hollis\" ",\
+    "hollis": "echo \"Hello Hollis\" ",
     "prehollis": "",
     "posthollis": ""
   },
